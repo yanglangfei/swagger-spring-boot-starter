@@ -6,6 +6,7 @@ import io.swagger.models.auth.In;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,8 +25,8 @@ import java.util.*;
 /**
  * @author ylf
  */
-@ComponentScan
 @Configuration
+@EnableConfigurationProperties(SwaggerProperties.class)
 @EnableSwagger2
 public class SwaggerAutoConfiguration {
 
@@ -36,6 +37,7 @@ public class SwaggerAutoConfiguration {
      * 创建API
      */
     @Bean
+    @ConditionalOnMissingBean(SwaggerProperties.class)
     public Docket createRestApi() {
         // DocumentationType.OAS_30
         Set<String> protocols = new HashSet<>();

@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @ConfigurationProperties(prefix = SwaggerProperties.PREFIX)
-@Component
-@EnableConfigurationProperties
 public class SwaggerProperties {
     public static final String PREFIX="spring.swagger";
 
